@@ -1,0 +1,30 @@
+@startuml taller
+' Clase principal que representa a las personas en el sistema
+class Persona {
+    + id: int
+    + nombre: String
+    + email: String
+    + fidelizacion: boolean
+}
+
+' Clase que representa las promociones
+class Promocion {
+    + id: int
+    + nombre: String
+    + fechaInicio: Date
+    + fechaFin: Date
+    + clientesAsignados: List<Persona>
+}
+
+' Clase que representa el departamento de mercadeo
+class DepartamentoMercadeo {
+    + numeroClientes(): int
+    + asignarPromocion(persona: Persona, promocion: Promocion): void
+}
+
+' Relaciones entre las clases
+Persona "1" -- "0..*" Promocion : "adquiere"
+DepartamentoMercadeo "1" ..> "0..*" Persona : "gestiona"
+DepartamentoMercadeo "1" ..> "0..*" Promocion : "administra"
+
+@enduml
